@@ -16,10 +16,11 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 
-from contact import views
+from contact.views import MessageAddView
+from shelf import views
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^shelf/', include('shelf.urls', namespace='shelf', app_name='shelf')),
-    url(r'^contact/$', views.MessageAddView.as_view()),
+    url(r'^contact/$', MessageAddView.as_view())
 ]

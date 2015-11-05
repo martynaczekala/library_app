@@ -6,7 +6,3 @@ class MessageForm(forms.ModelForm):
         model = Message
         fields = ('name', 'email', 'message')
         
-class ContactForm(forms.Form):
-    name=forms.CharField()
-    email=forms.EmailField()
-    message=forms.CharField(widget=forms.Textarea())
