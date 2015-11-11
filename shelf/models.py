@@ -1,3 +1,4 @@
+#from django.core.urlresolvers import reverse_lazy
 from django.db import models
 
 class Author(models.Model):
@@ -8,17 +9,20 @@ class Author(models.Model):
         return "{first_name} {last_name}".format(first_name=self.first_name,
             last_name=self.last_name)
     
+    
 class Publisher(models.Model):
     name=models.CharField(max_length=70)
 
     def __str__(self):
         return self.name
 
+
 class BookCategory(models.Model):
     name=models.CharField(max_length=50)
     
     def __str__(self):
         return self.name
+
 
 class Book(models.Model):
     title = models.CharField(max_length=100)
@@ -28,6 +32,10 @@ class Book(models.Model):
     
     def __str__(self):
         return self.title
+        
+    #def get_absolute_url(self):
+        #return reverse_lazy('shelf:book-detail', kwargs={'pk':self.id})
+
 
 class BookEdition(models.Model):
     """
@@ -36,6 +44,7 @@ class BookEdition(models.Model):
     book=models.ForeignKey(Book)
     publisher=models.ForeignKey(Publisher)
     isbn=models.CharField(max_length=17)
+    year=models.CharField(max_length=4, default='')
     
     def __str__(self):
         return"{book.title}, {publisher.name}".format(book=self.book,
@@ -49,8 +58,14 @@ class BookItem(models.Model):
     edition=models.ForeignKey(BookEdition)
     catalogue_number=models.CharField(max_length=30)
     
-    
     def __str__(self):
         return "{edition}".format(edition=self.edition)
+        
+    class Meta:
+        #powinno znajdowac sie w aplikacji rental
+        permissions = (
+            ('can_rent', 'Can rent a book'),
+            )
+        
     
 #tesndfnkjdsnjfs

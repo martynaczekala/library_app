@@ -2,7 +2,7 @@ from __future__ import unicode_literals, absolute_import
 
 from django.contrib import admin
 
-from .models import Author, Publisher, Book 
+from shelf.models import Author, Publisher, Book, BookCategory, BookEdition, BookItem
 
 class AuthorAdmin(admin.ModelAdmin):
     search_fields = ['last_name', 'first_name']
@@ -14,4 +14,7 @@ class BookAdmin(admin.ModelAdmin):
 
 admin.site.register(Author, AuthorAdmin)
 admin.site.register(Book, BookAdmin)
+admin.site.register(BookCategory)
 admin.site.register(Publisher)
+admin.site.register(BookEdition)
+admin.site.register(BookItem)

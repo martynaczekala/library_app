@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{%block content %}
+
+<h1>MAIN PAGE</h1>
+<ul>
+    <li><a href="{% url 'shelf:book-list' %}">Lista wszyscy</a></li>
+    <li><a href="{% url 'shelf:author-list' %}">Lista dla uzytkownikow</a></li>
+</ul>
+{% endblock %}
+
+{% block title %}
+Main page
+{% endblock %}
